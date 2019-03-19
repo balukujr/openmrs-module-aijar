@@ -325,6 +325,10 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
 
     private void installCommonMetadata(MetadataDeployService deployService) {
         try {
+            log.info("Installing standard metadata using the packages.xml file");
+            MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
+            log.info("Standard metadata installed");
+
             log.info("Installing metadata");
             log.info("Installing commonly used metadata");
             deployService.installBundle(Context.getRegisteredComponents(CommonMetadataBundle.class).get(0));
@@ -334,9 +338,7 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             log.info("Finished installing addresshierarchy");
 
             // install concepts
-            log.info("Installing standard metadata using the packages.xml file");
-            MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
-            log.info("Standard metadata installed");
+
 
             log.info("Installing patient flags");
             deployService.installBundle(Context.getRegisteredComponents(UgandaEMRPatientFlagMetadataBundle.class).get(0));
