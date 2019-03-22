@@ -42,7 +42,7 @@ jq(document).ready(function () {
 
 
     /* Validation of NIN on patient registration page */
-    $( "#registration" ).validate({
+    jq( "#registration" ).validate({
         rules: {
             confirm_nationalid: {
                 equalTo: "nationalid"
@@ -54,7 +54,23 @@ jq(document).ready(function () {
             }
         }
     });
+
+    /* Reconfigure the toast message to stay for 15 seconds instead of the default 3 seconds */
+    jq().toastmessage({stayTime : 15000});
 });
+
+
+/**
+ * Difference in Dates in months
+ * @param dt2
+ * @param dt1
+ * @returns {number}
+ */
+function diff_months(dt2, dt1) {
+    var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+    diff /= (60 * 60 * 24 * 7 * 4);
+    return Math.abs(Math.round(diff));
+}
 
 /**
  * Changes a field date in the format yy-mm-dd to dd/mm/yy which is easier to read
