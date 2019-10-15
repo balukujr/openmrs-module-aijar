@@ -129,7 +129,12 @@ public class AijarActivator extends org.openmrs.module.BaseModuleActivator {
             DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
 
             dataImporter.importData("metadata/Custom_Concepts.xml");
+            dataImporter.importData("metadata/Person_Attribute_Types.xml");
+
             log.info("Custom Concepts imported");
+
+            dataImporter.importData("metadata/Role_Privilege.xml");
+            log.info("Aijar Privileges Imported");
 
             // install commonly used metadata
             installCommonMetadata(deployService);
