@@ -47,11 +47,6 @@
     <script type="text/javascript">
         if (jQuery) {
             jq(document).ready(function () {
-                if (jq.browser.msie) {
-                    jq(":checkbox").click(function () {
-                        jq(this).change();
-                    });
-                }
                 //Block Multiple encounter entry on same date
                 blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
 
@@ -72,12 +67,11 @@
 
                     }
 
-                    if (jq(this).children("#trigger").find(":checkbox:first").attr("checked") != "checked") {
+                    if (jq(this).children("#trigger").find(":checkbox:first").is(":checked")) {
                         disableFn();
                     }
                     jq(this).children("#trigger").find(":checkbox:first").change(function () {
-                        var checked = jq(this).attr("checked");
-                        if (checked == "checked") {
+                        if (jq(this).is(":checked")) {
                             enableFn();
                         } else {
                             disableFn();
